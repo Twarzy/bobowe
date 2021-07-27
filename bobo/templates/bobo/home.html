@@ -1,0 +1,44 @@
+{% extends 'bobo/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% for promo in promotions %}
+<p> {{ x }}</p>
+<div class="card mb-3" style="max-width: 720px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ MEDIA_URL }}{{promo.image}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ promo.title }}</h5>
+        <p class="card-text">{{  promo.description }} - This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+<!--
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
+    # todo userselect > autoselect from link > default shop > default
+    # todo img saving path would be unique for each entry
+    image = models.ImageField(default='default.png', upload_to='promo_img', max_length=254, blank=True)
+    shop = models.CharField(max_length=100) #todo linked to shop model or be "select or add" field
+    active = models.BooleanField()
+    online = models.BooleanField()
+    weblink = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+    startdate = models.DateTimeField(default=timezone.now)
+    enddate = models.DateTimeField(blank=True, null=True) #todo if we reach end date active should change to false

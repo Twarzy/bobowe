@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import PromotionViewSet
+from .views import PromotionViewSet, MainView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('promotions', PromotionViewSet, basename='promotions')
 
 urlpatterns = [
-    path('viewset/', include(router.urls)),
-    path('viewset/<int>:pk/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('', MainView.as_view(), name='home'),
+    path('viewset/<int>:pk/', include(router.urls)),
 ]

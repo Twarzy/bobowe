@@ -4,4 +4,5 @@ from .models import Promotion
 class PromotionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Promotion
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'shop', 'active', 'online', 'weblink', 'date', 'startdate', 'enddate']
+        #fields = '__all__'
