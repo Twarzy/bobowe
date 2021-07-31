@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Promotion
 from .serializers import PromotionSerializer
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 class MainView(ListView):
     model = Promotion
@@ -14,6 +14,11 @@ class MainView(ListView):
 
     def get_fields(self):
         return [(field.name, field.value_to_string(self)) for field in Promotion._meta.fields]
+
+class PromotionDetailView(DetailView):
+    model = Promotion
+
+
 
 #API viewset
 class PromotionViewSet(viewsets.ModelViewSet):
