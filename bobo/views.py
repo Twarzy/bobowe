@@ -8,6 +8,7 @@ class MainView(ListView):
     model = Promotion
     template_name = 'bobo/home.html'
     context_object_name = 'promotions'
+    paginate_by = 2 #Will be expand to 10
 
     def get_queryset(self):
         return Promotion.objects.all()

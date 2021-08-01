@@ -28,21 +28,25 @@
 
 {% endfor %}
 
+{% if is_paginated %}
+
+    {% if page_obj.has_previous %}
+        <a class="btn btn-outline-warning mb-4" href="?page=1">Pierwsza</a>
+        <a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.previous_page_number }}">Poprzednia</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a class="btn btn-dark mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-dark mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+       {% if page_obj.has_next %}
+        <a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.next_page_number }}">Następna</a>
+        <a class="btn btn-outline-warning mb-4" href="?page={{ page_obj.paginator.num_pages }}">Ostatnia</a>
+    {% endif %}
+{% endif %}
+
 {% endblock %}
-
-
-
-
-<!--
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=1000)
-    # todo userselect > autoselect from link > default shop > default
-    # todo img saving path would be unique for each entry
-    image = models.ImageField(default='default.png', upload_to='promo_img', max_length=254, blank=True)
-    shop = models.CharField(max_length=100) #todo linked to shop model or be "select or add" field
-    active = models.BooleanField()
-    online = models.BooleanField()
-    weblink = models.CharField(max_length=100)
-    date = models.DateTimeField(auto_now_add=True)
-    startdate = models.DateTimeField(default=timezone.now)
-    enddate = models.DateTimeField(blank=True, null=True) #todo if we reach end date active should change to false

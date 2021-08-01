@@ -18,6 +18,7 @@ class Promotion(models.Model):
     description = models.CharField(max_length=1000)
     # todo userselect > autoselect from link > default shop > default
     # todo img saving path would be unique for each entry
+    # todo create image also different file as thumbnail
     image = models.ImageField(default='default.jpg', upload_to='promo_img', max_length=254, blank=True)
     shop = models.CharField(max_length=100) #todo linked to shop model or be "select or add" field
     category = models.CharField(max_length=100, choices=CATEGORY, default='INN')
@@ -28,6 +29,7 @@ class Promotion(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     startdate = models.DateTimeField(default=timezone.now)
     enddate = models.DateTimeField(blank=True, null=True) #todo if we reach end date active should change to false
+    #todo if enddate is close to now there should be somekind of notification
 
 
     def __str__(self):
