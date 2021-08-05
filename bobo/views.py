@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Promotion
+from .models import Promotion, Diaper
 from .serializers import PromotionSerializer
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
@@ -19,6 +19,10 @@ class MainView(ListView):
 class PromotionDetailView(DetailView):
     model = Promotion
 
+class DiaperListView(ListView):
+    model = Diaper
+    template_name = 'bobo/diapers.html'
+    context_object_name = 'diapers'
 
 
 #API viewset

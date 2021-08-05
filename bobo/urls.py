@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import PromotionViewSet, MainView, PromotionDetailView
+from .views import PromotionViewSet, MainView, PromotionDetailView, DiaperListView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -25,5 +25,6 @@ urlpatterns = [
     #path('api/', include(router.urls)),
     path('', MainView.as_view(), name='home'),
     path('okazje/<int:pk>/', PromotionDetailView.as_view(), name='okazja'),
+    path('pieluchy/', DiaperListView.as_view(), name='pieluchy' )
     #path('viewset/<int:pk>/', include(router.urls)),
 ]

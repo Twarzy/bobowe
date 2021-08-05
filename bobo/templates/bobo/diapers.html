@@ -1,0 +1,41 @@
+{% extends 'bobo/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="mt-4">Najlepsze okazje na pieluchy</h1>
+
+<table class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Rozmiar</th>
+      <th scope="col">Cena</th>
+      <th scope="col">Ilość w paczce</th>
+      <th scope="col">Cena za 1 szt</th>
+      <th scope="col">Dostępna Online</th>
+      <th scope="col">KUP</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for diaper in diapers %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ diaper.brand }}</td>
+      <td>{{ diaper.name }}</td>
+      <td>{{ diaper.size }}</td>
+      <td>{{ diaper.price }} zł</td>
+      <td>{{ diaper.quantity }}</td>
+      <td></td>
+      <td>{% if diaper.online %} TAK {% else %} - {% endif %}</td>
+      <td>{% if diaper.weblink %}
+          <a class="btn btn-warning" href="{{ diaper.weblink }}" role="button">KUP</a>
+          {% else %} - {% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

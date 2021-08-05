@@ -35,6 +35,23 @@ class Promotion(models.Model):
     def __str__(self):
         return self.title
 
+class Diaper(models.Model):
+    name = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100)
+    size = models.CharField(max_length=100, blank=True)
+    online = models.BooleanField()
+    weblink = models.URLField(blank=True)
+    price = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        if self.size:
+            return self.brand + ' ' + self.name + ' ' + self.size
+        else:
+            return self.brand + ' ' + self.name
+
+    #image
+
 
 
 # Create your models here.
