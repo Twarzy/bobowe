@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 
-
 class Promotion(models.Model):
 
     CATEGORY = [
@@ -43,6 +42,13 @@ class Diaper(models.Model):
     weblink = models.URLField(blank=True)
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField()
+
+    #price per piece
+    @property
+    def ppp(self):
+        ppp = int(self.price / self.quantity * 100)
+        return ppp
+
 
     def __str__(self):
         if self.size:
