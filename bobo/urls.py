@@ -15,16 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import PromotionViewSet, MainView, PromotionDetailView, DiaperListView
+from .views import PromotionViewSet, MainView, PromotionDetailView, DiaperListView,CategoryListView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register('promotions', PromotionViewSet, basename='promotions')
 
 urlpatterns = [
-    #path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
     path('', MainView.as_view(), name='home'),
     path('okazje/<int:pk>/', PromotionDetailView.as_view(), name='okazja'),
-    path('pieluchy/', DiaperListView.as_view(), name='pieluchy' )
+    path('pieluchy/', DiaperListView.as_view(), name='pieluchy'),
+    path('kategoria/', CategoryListView.as_view(), name='kategoria')
     #path('viewset/<int:pk>/', include(router.urls)),
 ]

@@ -9,12 +9,8 @@ class MainView(ListView):
     template_name = 'bobo/home.html'
     context_object_name = 'promotions'
     paginate_by = 2 #Will be expand to 10
+    ordering = ['-date']
 
-    def get_queryset(self):
-        return Promotion.objects.all()
-
-    def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in Promotion._meta.fields]
 
 class PromotionDetailView(DetailView):
     model = Promotion
@@ -24,11 +20,23 @@ class DiaperListView(ListView):
     template_name = 'bobo/diapers.html'
     context_object_name = 'diapers'
 
+class CategoryListView(ListView):
+    model = Promotion
+    template_name = 'bobo/category.html'
+    context_object_name = 'promotions'
+    #TODO paginate not working with geting url parameter
+    #paginate_by = 2 #Will be expand to 10
+
+    category_list = model.CATEGORY
+
+    def get_queryset(self):
+        return Promotion.objects.filter(category=self.request.GET.get('category'))
+
 
 #API viewset
 class PromotionViewSet(viewsets.ModelViewSet):
     serializer_class = PromotionSerializer
-    queryset = Promotion.objects.all()
+    queryset = Promotion.objects.all().order_by('-date')
 
 
 

@@ -38,10 +38,14 @@
                 Kategorie
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Zabawki</a></li>
-                <li><a class="dropdown-item" href="#">Pielęgnacyjne</a></li>
+                <li><a class="dropdown-item" href="{% url 'kategoria' %}">Kategorie</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Dla Niemowlaków</a></li>
+                  <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=NEW">Dla Niemowlaków</a></li>
+                <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=ZAB">Zabawki</a></li>
+                <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=PIE">Pielęgnacyjna</a></li>
+                  <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=NAU">Edukacja</a></li>
+                  <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=WIF">Wózki i foteliki</a></li>
+                  <li><a class="dropdown-item" href="{% url 'kategoria' %}?category=INN">Inne</a></li>
               </ul>
             </li>
             <li class="nav-item">

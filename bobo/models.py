@@ -5,8 +5,8 @@ from django.utils import timezone
 class Promotion(models.Model):
 
     CATEGORY = [
-        ('INN', 'inna'),
-        ('ZA', 'zabawki'),
+        ('INN', 'inne'),
+        ('ZAB', 'zabawki'),
         ('NEW', 'dla niemowlaka'),
         ('NAU', 'nauka'),
         ('PIE', 'pielęgnacja'),
@@ -34,6 +34,11 @@ class Promotion(models.Model):
     def __str__(self):
         return self.title
 
+#TODO auto generate and add affilate part of link for ex. allegro.pl
+#TODO use bitly api, for automatic shorten link, and get click report for link
+
+
+
 class Diaper(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
@@ -43,9 +48,8 @@ class Diaper(models.Model):
     price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField()
 
-    #price per piece
     @property
-    def ppp(self):
+    def price_pp(self):  #price per piece
         ppp = int(self.price / self.quantity * 100)
         return ppp
 
