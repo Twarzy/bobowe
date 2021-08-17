@@ -2,8 +2,16 @@
 {% load static %}
 {% block content %}
 
-<h1 class="mt-4">Najlepsze Okazje dla Rodziców</h1>
 
+
+
+{% if request.GET.search %}
+    <h2 class="mt-4">Wynik Wyszukiwania: "{{ request.GET.search}}"</h2>
+{% else %}
+    <h1 class="mt-4">Najlepsze Okazje dla Rodziców</h1>
+{% endif %}
+
+<hr>
 {% for promo in promotions %}
 
 <div class="card mb-3" style="max-width: 720px;">
