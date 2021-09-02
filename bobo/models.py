@@ -13,8 +13,10 @@ class Promotion(models.Model):
         ('WIF', 'wózki i foteliki')
     ]
 
-    title = models.CharField(max_length=50)
-    description = models.CharField(max_length=1000)
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
+    price = models.FloatField(blank=True, null=True)
+    old_price = models.FloatField(blank=True, null=True)
     # todo userselect > autoselect from link > default shop > default
     # todo img saving path would be unique for each entry
     # todo create image also different file as thumbnail
@@ -30,6 +32,10 @@ class Promotion(models.Model):
     enddate = models.DateTimeField(blank=True, null=True) #todo if we reach end date active should change to false
     #todo if enddate is close to now there should be somekind of notification
 
+    @property
+    def discount(self):
+        discount = round(((self.old_price - self.price) / self.old_price * 100), 2)
+        return discount
 
     def __str__(self):
         return self.title
