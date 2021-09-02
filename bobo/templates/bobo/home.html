@@ -25,8 +25,16 @@
       <div class="card-body">
         <h5 class="card-title">
             <a href="{% url 'okazja' promo.id %}" class="link-dark">{{ promo.title }}</a> </h5>
-        <p> <span class="text-warning h4"><strong>{{ promo.price }}zł</strong></span> <s>{{ promo.old_price }}zł</s>
-            {% if promo.price and promo.old_price %}<mark>-{{ promo.discount }}%</mark>{% endif %}</p>
+        <p>
+            {% if promo.price and promo.old_price %}
+                <span class="text-warning h4"><strong>{{ promo.price }}zł</strong></span>
+            {% endif %}
+            {% if promo.price and promo.old_price %}
+                <s>{{ promo.old_price }}zł</s>
+            {% endif %}
+            {% if promo.price and promo.old_price %}
+                <mark>-{{ promo.discount }}%</mark>
+            {% endif %}</p>
         <p class="card-text">- This is a wider card with supporting
             text below as a natural
             lead-in to additional content. This content is a little bit longer.
